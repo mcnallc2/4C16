@@ -32,11 +32,11 @@ def polynomial_design_matrix(x, order=1):
 
     # Hint:
     # Outer loop: iterating over columns; each column gets a higher power
-    # for p in range(0, order+1):
+    for p in range(0, order+1):
     # Inner loop: iterating over rows: each row corresponds to an element of 'x'
-    # for i in range(x.size):
+        for i in range(x.size):
     # Element (i,p) of X should be the ith element of 'x' to the power p:
-    X[i,p] = <something>
+            X[i,p] = (x[i] ** p)
 
     return X
 
@@ -53,7 +53,7 @@ def linear_regression(X, y, eps=0):
 
     # EXERCISE 2: implement Tikhonov regularisation.
     # See lecture handout 1, slide 35.
-    # print("Eps: " + str(eps))
+    print("Eps: " + str(eps))
     #
     # <add 'eps' times the identity matrix to M>
     # Hints:
@@ -63,6 +63,9 @@ def linear_regression(X, y, eps=0):
     # The number of rows in a matrix 'A' is then 'A.shape[0]' (or 'len(A)')
     # You can add matrices with '+' -- so you will update 'M' with 'M = M + <amount> * <identity>'
     # Note that the amount of regularization is denoted 'alpha' in the slides but here it's 'eps'.
+    I = np.identity(len(M))
+    M = M + (eps * I) 
+    
     theta = np.dot(np.linalg.inv(M), np.dot(X.transpose(), y))
     return theta;
 
@@ -71,7 +74,8 @@ def mean_squared_error(y1, y2):
     # You can use '-' to compute the elementwise difference of numpy vectors (i.e. y1 - y2).
     # You can use '**' for elementwise exponentiation of a numpy vector.
     # You can use the numpy function 'mean' to compute the mean of a vector.
-    return 0  # replace this with your answer.
+    mse = ((y1 - y2)**2).mean(axis=None)
+    return mse  # replace this with your answer.
 
 # EXERCISE 4: return the number of the best order for the supplied
 # data (see the notebook).
