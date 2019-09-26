@@ -91,8 +91,8 @@ def cross_entropy(w, X, y):
 # differs slightly from the definition in the notes.
 def gradient(w, X, y):
     n = y.shape[0]                 # number of observations
-    p = [0]                        # <replace '[0]' with a call to the predict function>
-    grad = [0]                     # use 'np.dot' to compute the vector
+    p = predict(w, X)                        # <replace '[0]' with a call to the predict function>
+    grad = np.dot(p-y, X)                     # use 'np.dot' to compute the vector
     return grad / n                # Average over the (number of) observations
 
 #
@@ -103,7 +103,7 @@ def gradient(w, X, y):
 # What learning rate is best for the data set supplied in the notebook?
 
 def question_3():
-    return 0
+    return 1
 
 #
 # #### EXERCISE 4 ####
