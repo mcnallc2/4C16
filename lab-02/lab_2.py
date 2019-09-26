@@ -112,7 +112,14 @@ def question_3():
 # 'X', and a threshold 't' to classify the data.
 def predict_class(w, X, t):
     # replace with a vector of comparisons of a call to predict with 't':
-    return np.zeros((X.shape[0],1))
+    p = predict(w, X)
+    
+    for i in range(p.size):
+        if p[i] < t:
+            p[i] = 0
+        else :
+            p[i] = 1
+    return p
 
 #
 # #### EXERCISE 5 ####
